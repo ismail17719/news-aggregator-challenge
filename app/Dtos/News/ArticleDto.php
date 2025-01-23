@@ -17,6 +17,7 @@ class ArticleDto
         public readonly string $url,
         public readonly ArticleSource $source,
         public readonly string|null $author = null,
+        public readonly string|null $category = null,
         public readonly string|null $thumb = null,
         public readonly Carbon|null $published_at = null,
     )

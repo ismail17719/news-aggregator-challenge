@@ -21,6 +21,7 @@ class StoreArticleAction
         $article->url = $dto->url;
         $article->source = $dto->source->name;
         $article->author = $dto->author;
+        $article->category = $dto->category;
         $article->thumb = $dto->thumb;
         $article->published_at = $dto->published_at;
         $article->save();

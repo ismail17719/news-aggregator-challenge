@@ -42,6 +42,7 @@ class GuardianNews implements Aggregator
                 title: $news->webTitle,
                 url: $news->webUrl,
                 source: ArticleSource::GUARDIAN,
+                category: strtolower($news->pillarName),
                 published_at: today()
             ));
         }
