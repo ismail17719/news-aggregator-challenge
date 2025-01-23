@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait ApiResponser
 {
     /**
-     * Building success response
+     * Building API json response
      *
-     * @param  int  $code
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function response(string $msg, int $code = Response::HTTP_OK, array|Collection $data = [], bool $includeCodeInStatus = false)
+    public function response(string $msg, int $code = Response::HTTP_OK, array|Collection $data = []): JsonResponse
     {
         $resPhrase = '';
         $resStatus = '';
