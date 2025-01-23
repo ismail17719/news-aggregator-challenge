@@ -43,6 +43,7 @@ class NewsOrgNews implements Aggregator
                 title: $news->title,
                 url: $news->url,
                 source: ArticleSource::NEWSORG,
+                author: $news->author,
                 thumb: $news->urlToImage,
                 published_at: today()
             ));

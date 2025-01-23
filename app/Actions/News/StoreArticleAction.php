@@ -20,6 +20,7 @@ class StoreArticleAction
         $article->title = $dto->title;
         $article->url = $dto->url;
         $article->source = $dto->source->name;
+        $article->author = $dto->author;
         $article->thumb = $dto->thumb;
         $article->published_at = $dto->published_at;
         $article->save();

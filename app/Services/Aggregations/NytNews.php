@@ -43,6 +43,7 @@ class NytNews implements Aggregator
                 title: $news->title,
                 url: $news->url,
                 source: ArticleSource::NYT,
+                author: str_replace('By ', '', $news->byline),
                 thumb: count($news->multimedia) > 0 ? $news->multimedia[0]->url : null,
                 published_at: today()
             ));
