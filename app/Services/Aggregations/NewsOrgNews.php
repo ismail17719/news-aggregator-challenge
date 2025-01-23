@@ -9,11 +9,11 @@ use App\Dtos\News\ArticleDto;
 use App\Enums\News\ArticleSource;
 use App\Traits\ConsumeExternalService;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class NewsOrgNews implements Aggregator
 {
     use ConsumeExternalService;
+
     protected Collection $news;
 
     /**
@@ -26,7 +26,6 @@ class NewsOrgNews implements Aggregator
 
     /**
      * Fetch news from external service
-     *
      */
     public function fetch(): void
     {
@@ -35,11 +34,11 @@ class NewsOrgNews implements Aggregator
             [
                 'q' => 'a',
                 'from' => now()->subDays(1)->format('Y-m-d'),
-                'apiKey' => config('services.news.newsorg.key')
+                'apiKey' => config('services.news.newsorg.key'),
             ]
         ));
         foreach ($results->articles as $news) {
-            $this->news->push( new ArticleDto(
+            $this->news->push(new ArticleDto(
                 title: $news->title,
                 url: $news->url,
                 source: ArticleSource::NEWSORG,
@@ -52,7 +51,6 @@ class NewsOrgNews implements Aggregator
 
     /**
      * Store news in database
-     *
      */
     public function store(): void
     {

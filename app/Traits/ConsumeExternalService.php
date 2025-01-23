@@ -18,7 +18,7 @@ trait ConsumeExternalService
             ->withHeaders($headers)
             ->asJson()
             ->get($requestUrl);
-        if($response->failed()){
+        if ($response->failed()) {
             throw new \Exception($response->body());
         }
 

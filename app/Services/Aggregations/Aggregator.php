@@ -7,5 +7,6 @@ namespace App\Services\Aggregations;
 interface Aggregator
 {
     public function fetch(): void;
+
     public function store(): void;
 }

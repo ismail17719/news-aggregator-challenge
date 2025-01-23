@@ -9,11 +9,11 @@ use App\Dtos\News\ArticleDto;
 use App\Enums\News\ArticleSource;
 use App\Traits\ConsumeExternalService;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class GuardianNews implements Aggregator
 {
     use ConsumeExternalService;
+
     protected Collection $news;
 
     /**
@@ -26,7 +26,6 @@ class GuardianNews implements Aggregator
 
     /**
      * Fetch news from external service
-     *
      */
     public function fetch(): void
     {
@@ -34,11 +33,11 @@ class GuardianNews implements Aggregator
             config('services.news.guardian.endpoint'),
             [
                 'from-date' => now()->format('Y-m-d'),
-                'api-key' => config('services.news.guardian.key')
+                'api-key' => config('services.news.guardian.key'),
             ]
         ));
         foreach ($results->response->results as $news) {
-            $this->news->push( new ArticleDto(
+            $this->news->push(new ArticleDto(
                 title: $news->webTitle,
                 url: $news->webUrl,
                 source: ArticleSource::GUARDIAN,
@@ -50,7 +49,6 @@ class GuardianNews implements Aggregator
 
     /**
      * Store news in database
-     *
      */
     public function store(): void
     {

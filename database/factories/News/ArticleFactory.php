@@ -34,12 +34,11 @@ class ArticleFactory extends Factory
 
     /**
      * Get unique url
-     *
      */
     private function url(): string
     {
         $url = $this->faker->unique()->url();
-        if(Article::where('url', $url)->exists()) {
+        if (Article::where('url', $url)->exists()) {
             return $this->url();
         }
 

@@ -10,12 +10,12 @@ use Illuminate\Support\Str;
 
 class StoreArticleAction
 {
-    public function __invoke(ArticleDto $dto): Article|null
+    public function __invoke(ArticleDto $dto): ?Article
     {
-        if(Article::where('url', $dto->url)->exists()) {
+        if (Article::where('url', $dto->url)->exists()) {
             return null;
         }
-        $article = new Article();
+        $article = new Article;
         $article->id = Str::uuid();
         $article->title = $dto->title;
         $article->url = $dto->url;

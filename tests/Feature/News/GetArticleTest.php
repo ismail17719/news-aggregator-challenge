@@ -3,8 +3,6 @@
 namespace Tests\Feature\News;
 
 use App\Models\News\Article;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
@@ -27,9 +25,6 @@ class GetArticleTest extends TestCase
             ->toArray();
     }
 
-    /**
-     *
-     */
     public function test_it_returns_200_success_response_with_expected_structure(): void
     {
         $response = $this->makeRequest();
@@ -40,10 +35,10 @@ class GetArticleTest extends TestCase
             'status',
             'msg',
             'data' => [
-                "total",
-                "page",
-                "last_page",
-                "per_page",
+                'total',
+                'page',
+                'last_page',
+                'per_page',
                 'records' => [
                     '*' => [
                         'id',
@@ -57,20 +52,17 @@ class GetArticleTest extends TestCase
                         'published_at',
                     ],
                 ],
-            ]
+            ],
         ]);
         $response->assertValid();
 
     }
 
-    /**
-     *
-     */
     public function test_it_returns_200_success_response_with_expected_structure_for_filters(): void
     {
         $response = $this->makeRequest(
             params: [
-               'source' => $this->articles[0]['source'],
+                'source' => $this->articles[0]['source'],
             ]
         );
         $response->assertStatus(status: Response::HTTP_OK);
@@ -80,10 +72,10 @@ class GetArticleTest extends TestCase
             'status',
             'msg',
             'data' => [
-                "total",
-                "page",
-                "last_page",
-                "per_page",
+                'total',
+                'page',
+                'last_page',
+                'per_page',
                 'records' => [
                     '*' => [
                         'id',
@@ -97,17 +89,16 @@ class GetArticleTest extends TestCase
                         'published_at',
                     ],
                 ],
-            ]
+            ],
         ]);
         $response->assertValid();
 
     }
 
-
     private function makeRequest(array $params = [], array $headers = []): TestResponse
     {
         return $this->get(
-            uri: route('api.articles.index') . '?' . http_build_query($params),
+            uri: route('api.articles.index').'?'.http_build_query($params),
             headers: $headers
         );
     }

@@ -9,13 +9,10 @@ class NewsContext
     /**
      * Create a new class instance.
      */
-    public function __construct(protected Aggregator $aggregator)
-    {
-    }
+    public function __construct(protected Aggregator $aggregator) {}
 
     /**
      * Fetch news from external service
-     *
      */
     public function fetch(): void
     {
@@ -24,7 +21,6 @@ class NewsContext
 
     /**
      * Store news in database
-     *
      */
     public function store(): void
     {

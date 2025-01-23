@@ -12,7 +12,6 @@ trait ApiResponser
 {
     /**
      * Building API json response
-     *
      */
     public function response(string $msg, int $code = Response::HTTP_OK, array|Collection $data = []): JsonResponse
     {
@@ -135,7 +134,7 @@ trait ApiResponser
                 $resStatus = 'fail';
                 break;
 
-                //Ok responses
+                // Ok responses
             case Response::HTTP_OK:
                 $resPhrase = 'Ok';
                 $resStatus = 'success';
@@ -153,7 +152,7 @@ trait ApiResponser
                 $resStatus = 'success';
                 break;
 
-                //Server error codes
+                // Server error codes
             case Response::HTTP_SERVICE_UNAVAILABLE:
                 $resPhrase = 'Service Unavailable';
                 $resStatus = 'fail';

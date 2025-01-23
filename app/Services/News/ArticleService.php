@@ -12,31 +12,30 @@ class ArticleService
 {
     /**
      * Create a new class instance.
-     *
      */
     public function getAll(): LengthAwarePaginator
     {
         return Article::filter(request()->only(
             'search',
-                'from',
-                'to',
-                'source',
-                'author',
-                'category',
-            ))
+            'from',
+            'to',
+            'source',
+            'author',
+            'category',
+        ))
             ->paginate()
             ->withQueryString()
             ->through(fn (Article $article) => [
-                'id' => $article->id,
-                'title' => $article->title,
-                'url' => $article->url,
-                'source' => $article->source,
-                'source_label' => ArticleSource::from($article->source)->label(),
-                'author' => $article->author,
-                'category' => $article->category,
-                'thumb' => $article->thumb,
-                'published_at' => $article->published_at,
-            ]);
+            'id' => $article->id,
+            'title' => $article->title,
+            'url' => $article->url,
+            'source' => $article->source,
+            'source_label' => ArticleSource::from($article->source)->label(),
+            'author' => $article->author,
+            'category' => $article->category,
+            'thumb' => $article->thumb,
+            'published_at' => $article->published_at,
+        ]);
     }
 
     /**
@@ -46,12 +45,12 @@ class ArticleService
     {
         return Article::filter(request()->only(
             'search',
-                'from',
-                'to',
-                'source',
-                'author',
-                'category',
-            ))
+            'from',
+            'to',
+            'source',
+            'author',
+            'category',
+        ))
             ->count();
     }
 }

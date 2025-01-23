@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
 class NytNews implements Aggregator
 {
     use ConsumeExternalService;
+
     protected Collection $news;
 
     /**
@@ -25,7 +26,6 @@ class NytNews implements Aggregator
 
     /**
      * Fetch news from external service
-     *
      */
     public function fetch(): void
     {
@@ -35,11 +35,11 @@ class NytNews implements Aggregator
                 'q' => 'a',
                 'begin_date' => now()->format('Ymd'),
                 'end_date' => now()->format('Ymd'),
-                'api-key' => config('services.news.nyt.key')
+                'api-key' => config('services.news.nyt.key'),
             ]
         ));
         foreach ($results->results as $news) {
-            $this->news->push( new ArticleDto(
+            $this->news->push(new ArticleDto(
                 title: $news->title,
                 url: $news->url,
                 source: ArticleSource::NYT,
@@ -52,7 +52,6 @@ class NytNews implements Aggregator
 
     /**
      * Store news in database
-     *
      */
     public function store(): void
     {
