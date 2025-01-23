@@ -2,6 +2,7 @@
 
 namespace Database\Factories\News;
 
+use App\Enums\News\ArticleSource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +21,8 @@ class ArticleFactory extends Factory
             'id' => $this->faker->uuid(),
             'title' => $this->faker->sentence(8),
             'url' => $this->faker->url(),
-            'source' => $this->faker->company(),
-            'thumb' => $this->faker->imageUrl(),
+            'source' => $this->faker->randomElement(ArticleSource::cases())->name,
+            'thumb' => $this->faker->optional(0.4)->imageUrl(),
             'published_at' => $this->faker->date(),
         ];
     }
