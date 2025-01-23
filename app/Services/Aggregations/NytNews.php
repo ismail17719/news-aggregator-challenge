@@ -36,12 +36,13 @@ class NytNews implements Aggregator
                 'api-key' => config('services.news.nyt.key')
             ]
         ));
-        foreach ($results->articles as $news) {
+        foreach ($results->results as $news) {
             $this->news->push( new ArticleDto(
-                $news->title,
-                $news->url,
-                ArticleSource::NYT,
-                count($news->multimedia[0]) > 0 ? $news->multimedia[0]->url : null
+                title: $news->title,
+                url: $news->url,
+                source: ArticleSource::NYT,
+                thumb: count($news->multimedia) > 0 ? $news->multimedia[0]->url : null,
+                published_at: today()
             ));
         }
     }

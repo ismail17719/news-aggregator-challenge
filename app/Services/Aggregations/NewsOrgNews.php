@@ -7,6 +7,7 @@ use App\Dtos\News\ArticleDto;
 use App\Enums\News\ArticleSource;
 use App\Traits\ConsumeExternalService;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class NewsOrgNews implements Aggregator
 {
@@ -31,15 +32,17 @@ class NewsOrgNews implements Aggregator
             config('services.news.newsorg.endpoint'),
             [
                 'q' => 'a',
-                'from' => now()->format('Y-m-d'),
+                'from' => now()->subDays(1)->format('Y-m-d'),
                 'apiKey' => config('services.news.newsorg.key')
             ]
         ));
         foreach ($results->articles as $news) {
             $this->news->push( new ArticleDto(
-                $news->title,
-                $news->url,
-                ArticleSource::NEWSORG
+                title: $news->title,
+                url: $news->url,
+                source: ArticleSource::NEWSORG,
+                thumb: $news->urlToImage,
+                published_at: today()
             ));
         }
     }

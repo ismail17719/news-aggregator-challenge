@@ -34,14 +34,15 @@ class GuardianNews implements Aggregator
             config('services.news.guardian.endpoint'),
             [
                 'from-date' => now()->format('Y-m-d'),
-                'key' => config('services.news.guardian.key')
+                'api-key' => config('services.news.guardian.key')
             ]
         ));
         foreach ($results->response->results as $news) {
             $this->news->push( new ArticleDto(
-                $news->webTitle,
-                $news->webUrl,
-                ArticleSource::GUARDIAN
+                title: $news->webTitle,
+                url: $news->webUrl,
+                source: ArticleSource::GUARDIAN,
+                published_at: today()
             ));
         }
     }

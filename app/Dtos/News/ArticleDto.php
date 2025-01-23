@@ -13,11 +13,11 @@ class ArticleDto
      * Create a new class instance.
      */
     public function __construct(
-        public string $title,
-        public string $url,
-        public ArticleSource $source,
-        public string|null $thumb = null,
-        public Carbon $published_at = now(),
+        public readonly string $title,
+        public readonly string $url,
+        public readonly ArticleSource $source,
+        public readonly string|null $thumb = null,
+        public readonly Carbon|null $published_at = null,
     )
     {
     }
