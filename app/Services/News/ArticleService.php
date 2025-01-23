@@ -19,7 +19,8 @@ class ArticleService
             'search',
                 'from',
                 'to',
-                'source'
+                'source',
+                'author'
             ))
             ->paginate()
             ->withQueryString()

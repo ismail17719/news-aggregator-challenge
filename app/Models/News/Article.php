@@ -38,6 +38,9 @@ class Article extends Model
         })
         ->when($filters['source'] ?? null, function ($query, $source) {
             $query->where('source', strtoupper($source));
+        })
+        ->when($filters['author'] ?? null, function ($query, $author) {
+            $query->where('author', 'like', '%' . $author . '%');
         });
     }
 
