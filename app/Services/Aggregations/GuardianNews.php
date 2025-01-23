@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Aggregations;
 
+use App\Actions\News\StoreArticleAction;
+use App\Dtos\News\ArticleDto;
+use App\Enums\News\ArticleSource;
 use App\Traits\ConsumeExternalService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 class GuardianNews implements Aggregator
@@ -33,7 +38,11 @@ class GuardianNews implements Aggregator
             ]
         ));
         foreach ($results->response->results as $news) {
-
+            $this->news->push( new ArticleDto(
+                $news->webTitle,
+                $news->webUrl,
+                ArticleSource::GUARDIAN
+            ));
         }
     }
 
@@ -43,6 +52,8 @@ class GuardianNews implements Aggregator
      */
     public function store(): void
     {
-        //
+        foreach ($this->news as $article) {
+            app(StoreArticleAction::class)->__invoke($article);
+        }
     }
 }
