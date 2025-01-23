@@ -41,6 +41,9 @@ class Article extends Model
         })
         ->when($filters['author'] ?? null, function ($query, $author) {
             $query->where('author', 'like', '%' . $author . '%');
+        })
+        ->when($filters['category'] ?? null, function ($query, $category) {
+            $query->where('category', strtolower($category));
         });
     }
 

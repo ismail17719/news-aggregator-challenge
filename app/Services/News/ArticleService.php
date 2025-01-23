@@ -20,7 +20,8 @@ class ArticleService
                 'from',
                 'to',
                 'source',
-                'author'
+                'author',
+                'category',
             ))
             ->paginate()
             ->withQueryString()
@@ -30,6 +31,8 @@ class ArticleService
                 'url' => $article->url,
                 'source' => $article->source,
                 'source_label' => ArticleSource::from($article->source)->label(),
+                'author' => $article->author,
+                'category' => $article->category,
                 'thumb' => $article->thumb,
                 'published_at' => $article->published_at,
             ])
