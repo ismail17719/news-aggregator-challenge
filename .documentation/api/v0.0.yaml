@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Coding challenge API
+  description: The API Documentation for the coding challenge
+  version: '0.0'
+servers:
+  - description: Local Development
+    url: "http://aggregator.local"
+paths:
+  # TokenEx
+  /api/v1/news/articles:
+    get:
+      tags:
+        - News Articles
+      summary: Retrieve paginated list of news articles
+      security:
+        - PaymentProcessingApiKey: [ ]
+      parameters:
+        - name: search
+          in: query
+          description: Search key to look for in the article title
+          required: false
+          schema:
+            type: string
+            example: bitcoin
+        - name: source
+          in: query
+          description: News article source e.g guardian, nyt, newsorg
+          required: false
+          schema:
+            type: string
+            example: nyt
+        - name: auther
+          in: query
+          description: Name of the auther who wrote the article
+          required: false
+          schema:
+            type: string
+            example: John Doe
+        - name: from
+          in: query
+          description: The date from which the articles should be retrieved
+          required: false
+          schema:
+            type: string
+            example: 2021-01-01
+        - name: to
+          in: query
+          description: The date to which the articles should be retrieved
+          required: false
+          schema:
+            type: string
+            example: 2021-01-01
+        - name: page
+          in: query
+          description: desired page (in pagination)
+          required: false
+          schema:
+            type: integer
+            format: int64
+            example: 1
+        - name: category
+          in: query
+          description: Category of the news article
+          required: false
+          schema:
+            type: string
+            example: politics
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: Response Body
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 100
+                      per_page:
+                        type: integer
+                        example: 10
+                      page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 10
+                      records:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/NewsArticle'
+                  msg:
+                    type: string
+                    example: All articles
+                  phrase:
+                    type: string
+                    example: OK
+                  status:
+                    type: string
+                    example: success
+                  code:
+                    type: integer
+                    example: 200
