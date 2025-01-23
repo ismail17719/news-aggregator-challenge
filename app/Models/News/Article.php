@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\News;
 
 use Database\Factories\News\ArticleFactory;
@@ -37,13 +39,19 @@ class Article extends Model
             $query->where('published_at', '<=', $to);
         })
         ->when($filters['source'] ?? null, function ($query, $source) {
+            is_array($source) ?
+            $query->whereIn('source', array_map('strtoupper', $source)) :
             $query->where('source', strtoupper($source));
         })
         ->when($filters['author'] ?? null, function ($query, $author) {
+            is_array($author) ?
+            $query->whereIn('author',  $author) :
             $query->where('author', 'like', '%' . $author . '%');
         })
         ->when($filters['category'] ?? null, function ($query, $category) {
-            $query->where('category', strtolower($category));
+            is_array($category) ?
+            $query->whereIn('source', array_map('strtolower', $category)) :
+            $query->where('source', strtolower($category));
         });
     }
 
