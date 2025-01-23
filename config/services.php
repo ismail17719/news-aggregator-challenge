@@ -34,5 +34,19 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'news' => [
+        'guardian' => [
+            'endpoint' => env('GUARDIAN_API_ENDPOINT'),
+            'key' => env('GUARDIAN_API_KEY'),
+        ],
+        'nyt' => [
+            'endpoint' => env('NYT_API_ENDPOINT'),
+            'key' => env('NYT_API_KEY'),
+        ],
+        'newsorg' => [
+            'endpoint' => env('NEWS_ORG_API_ENDPOINT'),
+            'key' => env('NEWS_ORG_API_KEY'),
+        ],
+    ],
 
 ];

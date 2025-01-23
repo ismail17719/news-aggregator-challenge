@@ -2,8 +2,12 @@
 
 namespace App\Services\Aggregations;
 
+use App\Traits\ConsumeExternalService;
+
 class NytNews implements Aggregator
 {
+    use ConsumeExternalService;
+
     /**
      * Create a new class instance.
      */
@@ -11,7 +15,7 @@ class NytNews implements Aggregator
     {
         //
     }
-    
+
     /**
      * Fetch news from external service
      *

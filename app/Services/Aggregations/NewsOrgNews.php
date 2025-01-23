@@ -2,8 +2,12 @@
 
 namespace App\Services\Aggregations;
 
+use App\Traits\ConsumeExternalService;
+
 class NewsOrgNews implements Aggregator
 {
+    use ConsumeExternalService;
+
     /**
      * Create a new class instance.
      */
