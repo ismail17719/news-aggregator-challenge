@@ -30,6 +30,7 @@ class NewsOrgNews implements Aggregator
         $results = json_decode($this->request(
             config('services.news.newsorg.endpoint'),
             [
+                'q' => 'a',
                 'from' => now()->format('Y-m-d'),
                 'apiKey' => config('services.news.newsorg.key')
             ]
