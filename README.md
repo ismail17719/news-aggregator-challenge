@@ -1,10 +1,11 @@
 ## About Challenge
 
-This is a coding challenge from Innoscripta. It is for three sources
+This is a backend for a news aggregator and providing news articles to the frontend . It is for mainly from three sources:
 - The Guardian
 - New York Times
 - News API Org
 
+This is being built as coding challeng from Innoscripta.
 ### Steps to install and run
 **_All the commands down below should be run in project's root directory_**
 1. Clone the repository by running the following command
