@@ -23,6 +23,14 @@ class ArticleController extends Controller
      */
     public function index(): JsonResponse
     {
-        return $this->response(__('articles.response.index'), Response::HTTP_OK, $this->service->getAll());
+        $articles = $this->service->getAll();
+
+        return $this->response(__('articles.response.index'), Response::HTTP_OK, [
+            'total' => $this->service->count(),
+            'page' => $articles->currentPage(),
+            'last_page' => $articles->lastPage(),
+            'per_page' => $articles->perPage(),
+            'records' => $articles->items(),
+        ]);
     }
 }
