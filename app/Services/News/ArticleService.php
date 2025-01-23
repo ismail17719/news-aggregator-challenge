@@ -15,7 +15,13 @@ class ArticleService
      */
     public function getAll(): array
     {
-        return Article::paginate()
+        return Article::filter(request()->only(
+            'search',
+                'from',
+                'to',
+                'source'
+            ))
+            ->paginate()
             ->withQueryString()
             ->through(fn (Article $article) => [
                 'id' => $article->id,

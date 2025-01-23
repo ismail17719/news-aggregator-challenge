@@ -35,6 +35,9 @@ class Article extends Model
         })
         ->when($filters['to'] ?? null, function ($query, $to) {
             $query->where('published_at', '<=', $to);
+        })
+        ->when($filters['source'] ?? null, function ($query, $source) {
+            $query->where('source', strtoupper($source));
         });
     }
 
