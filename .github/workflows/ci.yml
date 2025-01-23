@@ -20,7 +20,7 @@ jobs:
       working-directory: ./
     - name: Install Dependencies
       run: |
-        composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       working-directory: ./
     - name: Generate key
       run: |
