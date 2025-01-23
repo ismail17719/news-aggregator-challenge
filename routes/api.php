@@ -1,8 +1,16 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::prefix('v1/news/')->as('api.')->group(function () {
+    /**
+     * ==========================
+     * Crews related routes
+     * ==========================
+     */
+    Route::resource('articles', ArticleController::class)->names([
+        'index' => 'articles.index',
+    ])->only(['index']);
+});

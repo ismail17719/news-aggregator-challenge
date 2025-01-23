@@ -175,10 +175,10 @@ trait ApiResponser
                 break;
         }
         $response = [
-            'resCode' => $code,
-            'resPhrase' => $resPhrase,
-            'resStatus' => $resStatus,
-            'resMsg' => $msg,
+            'code' => $code,
+            'phrase' => $resPhrase,
+            'status' => $resStatus,
+            'msg' => $msg,
             'data' => $data,
         ];
 

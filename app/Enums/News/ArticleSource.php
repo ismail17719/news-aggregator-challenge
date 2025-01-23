@@ -8,6 +8,15 @@ enum ArticleSource
     case NYT;
     case NEWSORG;
 
+    public static function from(string $value): ArticleSource
+    {
+        return match ($value) {
+            'GUARDIAN' => self::GUARDIAN,
+            'NYT' => self::NYT,
+            'NEWSORG' => self::NEWSORG,
+        };
+    }
+
     public function label(): string
     {
         return match ($this) {
